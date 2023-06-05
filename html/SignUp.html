@@ -1,38 +1,72 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Sign Up Expenese Tracker</title>
-
-        <!-- Linking Css file  -->
-        <link rel="stylesheet" type="text/css" href="styles.css" />
-        
+        <!-- Fonts  -->
+        <!-- roboto -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <!-- Inter -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <!-- Styles  -->
+        <link rel="stylesheet" href="styles/styles.css">
+        <!-- Title  -->
+        <title>Expense Tracker Sign Up</title>
     </head>
+    <!-- Body -->
     <body>
-        <!-- Header links  -->
-        <header>
-            <div class="header_items">
-                <a href="#">Logo</a>
-                <a href="#">Sign In </a>
-                <a href="#">Home</a>
-            </div>
+        <!-- Header links -->
+        <header class="header_items">
+            <a href="#" class="header_link">Sign In </a>
+            <a href="#" class="header_link">Home</a>
+            <a href="#" class="header_link">About</a>
         </header>
+        <!-- Main content -->
         <main>
-            <div class="sign_up_form">
-                <form action="sign_up.php" method="post">
-                    <h1>Sign Up</h1>
-                    <label for="first_name">First Name</label>
-                    <br>
-                    <input type="text",id="first_name">
-                    <br>
-                    <label for="last_name">Last Name</label>
-                    <br>
-                    <input type="text">
-                    <br>
-                    <input type="submit">
-                    
+            <div>
+                <form class="sign_up_form" action="sign_up.php" method="post">
+                    <h1 class="h1_form">Sign Up</h1>
+                    <p class="p_form">Please fill the following required fields to complete sign up </p>
+                    <div class="input">
+                        <label for="email" class="sign_up_label"> Email* </label>
+                        <br>
+                        <input type="text" name="email" placeholder="rizzmaster@kingdom.com">
+                        <br>
+                        <label for="username" class="sign_up_label"> Username* </label>
+                        <br>
+                        <input type="text" name="email" placeholder="dragon_slayer_88">
+
+                        <br>
+                        <label for="first_name" class="sign_up_label"> First Name* </label>
+                        <br>
+                        <input type="text" name="first_name" placeholder="John">
+                        <br>
+                        <label for="last_name" class="sign_up_label"> Last Name </label>
+                        <br>
+                        <input type="text" name="last_name" placeholder="Doe">
+                        <br>
+                        <label for="password" class="sign_up_label"> Password* </label>
+                        <br>
+                        <input type="text" name="password">
+                        <br>
+
+                        <label for="confirm_password" class="sign_up_label"> Confirm Password* </label>
+                        <br>
+                        <input type="password" name="confirm_password">
+                        <input type="submit">
+
+
+
+                    </div>
+                   
+
+
                 </form>
             </div>
-
         </main>
     </body>
+
+
 </html>
