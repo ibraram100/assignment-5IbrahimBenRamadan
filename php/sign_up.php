@@ -57,13 +57,8 @@ $var_first_name = filter_var($var_first_name,FILTER_SANITIZE_SPECIAL_CHARS);
 $var_last_name = filter_var($var_last_name,FILTER_SANITIZE_SPECIAL_CHARS);
 
 
-// Going to sign up confirmation page
-echo "<form action='confirm_sign_up.php' method='post'>";
-echo "<input type='hidden' name='username' value='".$var_password."' />";
-echo "<input type='submit' value='submit' />";
-echo "</form>";
-
-header('location:confirm_sign_up.php');
+// redirecting to the confirmation website and sending the sanatized data
+header("Location: confirm_sign_up.php?email=" . urlencode($var_email) . "&username=" . urlencode($var_username) . "&first_name=" . urlencode($var_first_name) . "&last_name=" . urlencode($var_last_name) . "&password=" . urlencode($var_password));
 
 
 

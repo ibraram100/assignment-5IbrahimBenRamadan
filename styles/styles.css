@@ -6,25 +6,39 @@ body {
     opacity: 90%;
 }
 
+/* Header styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+    margin-bottom: 20px;
+  }
+  .logo {
+    flex-grow: 1;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  nav li {
+    margin-left: 20px;
+  }
+  nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+
 
 /* Sign up styles */
-
-/* Header and header items  */
-header.header_items {
-    text-align: right;
-    margin-bottom: 100px;
-}
-.header_link {
-    color: #202020;
-    margin: 100px;
-    text-align: right;
-    font-size: 20px;
-    text-decoration: none;
-}
-.logo {
-    
-    text-align: left;
-}
 /* Form styles */
 form.sign_up_form {
     margin: auto;
@@ -66,3 +80,22 @@ input {
 .error {
     color:green;
 }
+
+
+/* Confirm sign up styles */
+/* table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+ */
+ table, th, td {
+    border:5px solid black;
+  }
