@@ -1,3 +1,4 @@
+<!-- ابراهيم محمد فاتح بن رمضان -->
 <!-- If username and password exisit, user will be logged in successfully and taken to home page -->
 
 <?php 
@@ -32,6 +33,7 @@ $users_pass_arr = array(
 foreach ($users_pass_arr as $username => $password) {
   if ($log_username == $username and $log_password == $password) {
     echo "<h1>Welcome Back $username</h1>";
+    echo "<button><a href='../html/home.html'>Go Home</a></button>";
     exit(0);
   }
 }

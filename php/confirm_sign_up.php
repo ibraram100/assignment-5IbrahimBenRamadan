@@ -1,3 +1,5 @@
+ <!-- ابراهيم محمد فاتح بن رمضان -->
+ <!-- If all of the data entered correctly on sign_up.php, user's data will be displayed here   -->
 <?php
 extract($_GET,EXTR_PREFIX_ALL,'var');
 foreach($_GET as $key=>$value){
@@ -24,11 +26,23 @@ foreach($_GET as $key=>$value){
         <link rel="stylesheet" href="../styles/styles.css">
         <!-- Title  -->
         <title>Confirm Sign Up</title>
+        <!-- Favicon -->
+        <link rel="icon" href="../images/shroom wojak.png" type="image/x-icon">
     </head>
     <body>
         <header>
-            <!--  -->
-        </header>
+            <div class="logo">
+            <a href="home.html"><img src="../images/shroom wojak.png" alt="Logo" class="logo_img">Expense Tracker</a>
+              </div>
+              <nav>
+                <ul>
+                  <li><a href="#">Categories</a></li>
+                  <li><a href="SignUp.html">Sign Up</a></li>
+                  <li><a href="login.html">Login</a></li>
+                  <li><a href="#">Log Out</a></li>
+                </ul>
+              </nav>
+            </header>
         <main>
             <!-- Displaying user data in a table -->
             <table class="user_data">
@@ -48,6 +62,58 @@ foreach($_GET as $key=>$value){
                 </tr>
             </table>
             <button><a href="../html/home.html">Go Home</a></button>
+
+            <footer>
+            
+            <table>
+                <th class="footer_th" colspan="3"><h1 class="footer_h1">Site Map</h1></th>
+                <th class="footer_th" colspan="3"><h1 class="footer_h1">Social Media</h1></th>
+                <th class="footer_th" colspan="3"><h1 class="footer_h1">About</h1></th>
+
+                <tr>
+                    
+                    <td class="footer_td" colspan="3">
+                        <ul>
+                            <li class="footer_li">
+                                <a href="home.html">Home</a>
+                            </li>
+                            <li class="footer_li">
+                                <a href="#">About </a>
+                            </li>
+                            <li class="footer_li">
+                                <a href="../html/login.html">Login</a>
+                            </li>
+                            <li class="footer_li">
+                                <a href="../html/SignUp.html">Sign Up</a>
+                            </li>
+                            <li class="footer_li">
+                                <a href="#">Categories</a>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="footer_td" colspan="3">
+                        <ul>
+                            <li>
+                               <img class="footer_icon" src="../images/facebook.png"> Facebook: <a href="https:facebook.com">Facebook.com</a> 
+                            </li>
+                            <li>
+                              <img class="footer_icon" src="../images/instagram.png"> instagram <a href="https:facebook.com">instagram.com</a> 
+                            </li>
+                            <li>
+                              <img class="footer_icon" src="../images/twitter.png"> twitter <a href="https:facebook.com">Twitter.com</a> 
+                            </li>
+                            
+                        </ul>
+
+                    </td>
+                    <td class="footer_td" colspan="3">
+                        <P style="color:white; margin:0px;padding:0px;">
+                            This website was made as a part<br> of CS315 homework 
+                        </P>
+                    </td>
+                </tr>
+            </table>
+        </footer>
 
         </main>
     </body>

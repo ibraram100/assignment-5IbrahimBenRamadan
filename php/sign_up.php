@@ -1,7 +1,7 @@
+<!-- ابراهيم محمد فاتح بن رمضان -->
+<!-- the purpose of this page is to check and validate data before it get's sent to the server -->
+
 <?php 
-// Starting Session
-
-
 extract($_POST, EXTR_PREFIX_ALL, 'var');
 // checking if inputs are set by using isset()
 foreach($_POST as $key=>$value){
@@ -23,11 +23,11 @@ foreach($_POST as $key=>$value){
 }
 
 // Making sure passwords are strong
-if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $var_password) and strlen($var_password)>10){
+if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $var_password) and(preg_match('/[A-Z]/', $var_password)) and(preg_match('/[a-z]/', $var_password)) and strlen($var_password)>10){
   // echo "<h1>Strong Pass</h1>";
 }
 else {
-  echo "<h1 style='color:red;'>Weak Password, Password must be at least 10 chars long and contain at least one special char !</h1>";
+  echo "<h1 style='color:red;'>Weak Password, Password must be at least 10 chars long and contain at least one special char, one capital letter !</h1>";
   $counter++;
 }
 
