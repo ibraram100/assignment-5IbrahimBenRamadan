@@ -1,4 +1,7 @@
 <?php 
+// Starting Session
+
+
 extract($_POST, EXTR_PREFIX_ALL, 'var');
 // checking if inputs are set by using isset()
 foreach($_POST as $key=>$value){
@@ -7,6 +10,7 @@ foreach($_POST as $key=>$value){
     exit(0);
   }
 }
+
 
 
 // Checking for empty variables
@@ -42,6 +46,7 @@ if (!filter_var($var_email,FILTER_VALIDATE_EMAIL)){
 // Checking the checkbox
 if ($var_agree != 'on'){
   echo "<h1 style='color:red;'>You must agree to terms and services to sign up!</h1>";
+  $counter++;
 }
 
 
@@ -57,8 +62,11 @@ $var_first_name = filter_var($var_first_name,FILTER_SANITIZE_SPECIAL_CHARS);
 $var_last_name = filter_var($var_last_name,FILTER_SANITIZE_SPECIAL_CHARS);
 
 
-// redirecting to the confirmation website and sending the sanatized data
-header("Location: confirm_sign_up.php?email=" . urlencode($var_email) . "&username=" . urlencode($var_username) . "&first_name=" . urlencode($var_first_name) . "&last_name=" . urlencode($var_last_name) . "&password=" . urlencode($var_password));
+// Displaying user data in confirmation
+header("Location: confirm_sign_up.php?email=" . urlencode($var_email) . "&username=" . urlencode($var_username) . "&first_name=" . urlencode($var_first_name) . "&last_name=" . urlencode($var_last_name) . "&password=" . urlencode($var_password),false);
+
+
+
 
 
 

@@ -31,24 +31,23 @@ foreach($_GET as $key=>$value){
         </header>
         <main>
             <!-- Displaying user data in a table -->
-            <table>
+            <table class="user_data">
                 <tr>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Name</th>
-                    <th>Password</th>
+                    <th class="user_data">Email</th>
+                    <th class="user_data">Username</th>
+                    <th class="user_data">Name</th>
+                    <th class="user_data">Password</th>
                 </tr>
                 <tr>
-                    <td><?php echo "$var_email"; ?></td>
-                    <td><?php echo "$var_username"; ?></td>
-                    <td><?php echo "$var_first_name $var_last_name"; ?></td>
-                    <td><?php echo "$var_password"; ?></td>
+                    <td class="user_data"><?php echo "<h1>$var_email</h1>"; ?></td>
+                    <td class="user_data"><?php echo "$var_username"; ?></td>
+                    <td class="user_data"><?php echo "$var_first_name $var_last_name"; ?></td>
+                    <td class="user_data"><?php echo "$var_password"; ?></td>
                 </tr>
                 
                 </tr>
             </table>
-            <button><a href="#">Complete Sign Up</a></button>
-            <button><a href="../html/SignUp.html">Go Back</a></button>
+            <button><a href="../html/home.html">Go Home</a></button>
 
         </main>
     </body>
