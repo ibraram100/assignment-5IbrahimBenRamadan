@@ -1,7 +1,18 @@
 <!-- ابراهيم محمد فاتح بن رمضان -->
 <!-- If username and password exisit, user will be logged in successfully and taken to home page -->
 
+
 <?php 
+// 2023/06/28 assignment 5 
+// Including dbconn.php which contains db info
+require_once 'dbconn.php';
+// Connecting to the database using dbconn.php 
+$connect = new mysqli($server_name,$username,$pass,$db_name);
+
+if ($connect->connect_error)
+{
+  die ("Couldn't connect to database ! " . $connect->connect_error);
+}
 
 
 // Extracting login data from login.html
