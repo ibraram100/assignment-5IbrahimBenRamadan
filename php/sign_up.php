@@ -1,7 +1,28 @@
 <!-- ابراهيم محمد فاتح بن رمضان -->
 <!-- the purpose of this page is to check and validate data before it get's sent to the server -->
 
+<!-- 2023/06/29 -->
+<!-- Storing users in database -->
 <?php 
+// Including dbconn.php which contains db info
+require_once 'dbconn.php';
+// Connecting to the database using dbconn.php 
+try {
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        throw new Exception("Failed to connect to server ");
+    }
+
+    // if connection is good 
+    echo "Connected successfully!";
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
+
+
 extract($_POST, EXTR_PREFIX_ALL, 'var');
 // checking if inputs are set by using isset()
 foreach($_POST as $key=>$value){
@@ -60,10 +81,23 @@ if ($counter>0){
 $var_username = filter_var($var_username,FILTER_SANITIZE_SPECIAL_CHARS);
 $var_first_name = filter_var($var_first_name,FILTER_SANITIZE_SPECIAL_CHARS);
 $var_last_name = filter_var($var_last_name,FILTER_SANITIZE_SPECIAL_CHARS);
+echo "$var_password";
+
+$id = 42;
+$gender = "male";
+// Making sql query
+$sql = "INSERT INTO user (user_id, user_email, username, password, first_name, last_name, gender) VALUES ('$id','$var_email', '$var_username', '$var_password','$var_first_name','$var_last_name','$gender')";
+$result = $conn->query($sql);
+
+ if (!$result) {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+} else {
+  // Displaying user data in confirmation
+  header("Location: confirm_sign_up.php?email=" . urlencode($var_email) . "&username=" . urlencode($var_username) . "&first_name=" . urlencode($var_first_name) . "&last_name=" . urlencode($var_last_name) . "&password=" . urlencode($var_password),false);
+
+}
 
 
-// Displaying user data in confirmation
-header("Location: confirm_sign_up.php?email=" . urlencode($var_email) . "&username=" . urlencode($var_username) . "&first_name=" . urlencode($var_first_name) . "&last_name=" . urlencode($var_last_name) . "&password=" . urlencode($var_password),false);
 
 
 

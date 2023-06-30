@@ -7,14 +7,20 @@
 // Including dbconn.php which contains db info
 require_once 'dbconn.php';
 // Connecting to the database using dbconn.php 
-$connect = new mysqli($server_name,$username,$pass,$db_name);
+try {
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($connect->connect_error)
-{
-  die ("Couldn't connect to database ! " . $connect->connect_error);
+    // Check connection
+    if ($conn->connect_error) {
+        throw new Exception("Failed to connect to server ");
+    }
+
+    // if connection is good 
+    echo "Connected successfully!";
+} catch (Exception $e) {
+    echo $e->getMessage();
 }
-
-
 // Extracting login data from login.html
 extract($_POST, EXTR_PREFIX_ALL, 'log');
 
@@ -34,23 +40,33 @@ foreach($_POST as $key=>$value){
       exit(0);
     }
   }
-$users_pass_arr = array(
-  "admin_2023" => "Admin_2023",
-  "cs314_2023" => "Cs314_2023",
-  "system_admin" => "System_admin1"
-);
+
+// $users_pass_arr = array(
+//   "admin_2023" => "Admin_2023",
+//   "cs314_2023" => "Cs314_2023",
+//   "system_admin" => "System_admin1"
+// );
 
 
-foreach ($users_pass_arr as $username => $password) {
-  if ($log_username == $username and $log_password == $password) {
-    echo "<h1>Welcome Back $username</h1>";
-    echo "<button><a href='../html/home.html'>Go Home</a></button>";
-    exit(0);
-  }
-}
+// foreach ($users_pass_arr as $username => $password) {
+//   if ($log_username == $username and $log_password == $password) {
+//     echo "<h1>Welcome Back $username</h1>";
+//     echo "<button><a href='../html/home.html'>Go Home</a></button>";
+//     exit(0);
+//   }
+// }
 
 
-echo "<h1 style='color:red;'>User Not Found !</h1>";
-echo "<button><a href='../html/login.html'>Go back</a></button>";
+// Sql query to get username(email) and password
+$sql = "SELECT * FROM user WHERE user_email = '$log_username' AND password = '$log_password' ";
+$result = $conn->query($sql);
+        if ($result->num_rows == 1) {
+            echo "Login successful!";
+            // Redirect to the home page or some other page
+        } else {
+            echo "Invalid username or password.";
+        }
+
+
 
 ?>
