@@ -4,6 +4,9 @@
 <!-- 2023/06/29 -->
 <!-- Storing users in database -->
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
 // Including dbconn.php which contains db info
 require_once 'dbconn.php';
 // Connecting to the database using dbconn.php 
@@ -81,29 +84,29 @@ if ($counter>0){
 $var_username = filter_var($var_username,FILTER_SANITIZE_SPECIAL_CHARS);
 $var_first_name = filter_var($var_first_name,FILTER_SANITIZE_SPECIAL_CHARS);
 $var_last_name = filter_var($var_last_name,FILTER_SANITIZE_SPECIAL_CHARS);
-echo "$var_password";
 
-$id = 422;
+// Each user will be given an id by the system
+// Calculating the id based on the number of rows (registered users) to generate the next user's id
+$number_of_users_query = "SELECT COUNT(*) FROM user;";
+$result = ($conn->query($number_of_users_query));
+// Converting the mysqli result to an array 
+$result = mysqli_fetch_row($result);
+$id = $result[0]+1;
 
-// Making sql query
-$sql = "INSERT INTO user (user_id, user_email, username, password, first_name, last_name, gender) VALUES ('$id','$var_email', '$var_username', '$var_password','$var_first_name','$var_last_name','$var_gender')";
+// Making sql insert query
+$sql = "INSERT INTO user (user_id, user_email, username, password, first_name, last_name, gender)
+VALUES ('$id','$var_email', '$var_username', '$var_password','$var_first_name','$var_last_name','$var_gender')";
+
 $result = $conn->query($sql);
 
- if (!$result) {
+if (!$result)
+{
   echo "Error: " . $sql . "<br>" . $conn->error;
-} else {
-  // Displaying user data in confirmation
-  header("Location: confirm_sign_up.php?email=" . urlencode($var_email) . "&username=" . urlencode($var_username) . "&first_name=" . urlencode($var_first_name) . "&last_name=" . urlencode($var_last_name) . "&password=" . urlencode($var_password),false);
-
 }
-
-
-
-
-
-
-
-
-
+else 
+{
+  // Displaying user data in confirmation_sign_up.php
+  header("Location: confirm_sign_up.php?email=" . urlencode($var_email) . "&username=" . urlencode($var_username) . "&first_name=" . urlencode($var_first_name) . "&last_name=" . urlencode($var_last_name) . "&password=" . urlencode($var_password),"&gender=" . urlencode($var_gender),false);
+}
 
 ?>

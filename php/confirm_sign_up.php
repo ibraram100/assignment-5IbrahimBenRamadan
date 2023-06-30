@@ -51,6 +51,8 @@ foreach($_GET as $key=>$value){
                     <th class="user_data">Username</th>
                     <th class="user_data">Name</th>
                     <th class="user_data">Password</th>
+                    <th class="user_data">Gender</th>
+
                 </tr>
                 <tr>
                     <td class="user_data"><?php echo "<h1>$var_email</h1>"; ?></td>
