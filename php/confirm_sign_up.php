@@ -57,6 +57,8 @@ foreach($_GET as $key=>$value){
                     <td class="user_data"><?php echo "$var_username"; ?></td>
                     <td class="user_data"><?php echo "$var_first_name $var_last_name"; ?></td>
                     <td class="user_data"><?php echo "$var_password"; ?></td>
+                    <td class="user_data"><?php echo "$var_gender"; ?></td>
+
                 </tr>
                 
                 </tr>

@@ -83,10 +83,10 @@ $var_first_name = filter_var($var_first_name,FILTER_SANITIZE_SPECIAL_CHARS);
 $var_last_name = filter_var($var_last_name,FILTER_SANITIZE_SPECIAL_CHARS);
 echo "$var_password";
 
-$id = 42;
-$gender = "male";
+$id = 422;
+
 // Making sql query
-$sql = "INSERT INTO user (user_id, user_email, username, password, first_name, last_name, gender) VALUES ('$id','$var_email', '$var_username', '$var_password','$var_first_name','$var_last_name','$gender')";
+$sql = "INSERT INTO user (user_id, user_email, username, password, first_name, last_name, gender) VALUES ('$id','$var_email', '$var_username', '$var_password','$var_first_name','$var_last_name','$var_gender')";
 $result = $conn->query($sql);
 
  if (!$result) {
