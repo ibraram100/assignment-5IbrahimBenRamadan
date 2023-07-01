@@ -2,7 +2,17 @@
 <!-- 2023/06/30 -->
 <!-- Allowing logged in users to add new categories -->
 
-<?php 
+<?php
+session_start();
+// If user is not logged in, user will be redirected to login page
+if (!isset($_SESSION['user_id']))
+{
+  echo "error ";
+}
+else
+{
+  echo $_SESSION['username'];
+}
 
 
 ?>
@@ -33,9 +43,9 @@
         </div>
           <nav>
             <ul>
-              <li><a href="home.html">Home</a></li>
+              <li><a href="../html/home.html">Home</a></li>
               <li><a href="#">Categories</a></li>
-              <li><a href="login.html">Login</a></li>
+              <li><a href="../html/login.html">Login</a></li>
               <li><a href="#">Log Out</a></li>
             </ul>
           </nav>

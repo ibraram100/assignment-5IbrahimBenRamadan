@@ -32,13 +32,13 @@ foreach($_GET as $key=>$value){
     <body>
         <header>
             <div class="logo">
-            <a href="home.html"><img src="../images/shroom wojak.png" alt="Logo" class="logo_img">Expense Tracker</a>
+            <a href="../html/home.html"><img src="../images/shroom wojak.png" alt="Logo" class="logo_img">Expense Tracker</a>
               </div>
               <nav>
                 <ul>
                   <li><a href="#">Categories</a></li>
-                  <li><a href="SignUp.html">Sign Up</a></li>
-                  <li><a href="login.html">Login</a></li>
+                  <li><a href="../html/SignUp.html">Sign Up</a></li>
+                  <li><a href="../html/login.html">Login</a></li>
                   <li><a href="#">Log Out</a></li>
                 </ul>
               </nav>

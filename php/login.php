@@ -4,23 +4,31 @@
 
 <?php 
 // 2023/06/28 assignment 5 
+
+// Starting session
+session_start();
+
 // Including dbconn.php which contains db info
 require_once 'dbconn.php';
 // Connecting to the database using dbconn.php 
-try {
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+try
+{
+  // Create connection
+  $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Check connection
-    if ($conn->connect_error) {
-        throw new Exception("Failed to connect to server ");
-    }
+  // Check connection
+  if ($conn->connect_error) {
+    throw new Exception("Failed to connect to server ");
+  }
 
-    // if connection is good 
-    echo "Connected successfully!";
-} catch (Exception $e) {
-    echo $e->getMessage();
+  // if connection is good 
+  echo "Connected successfully!";
+} 
+catch (Exception $e) 
+{
+  echo $e->getMessage();
 }
+
 // Extracting login data from login.html
 extract($_POST, EXTR_PREFIX_ALL, 'log');
 
@@ -60,12 +68,22 @@ foreach($_POST as $key=>$value){
 // Sql query to get username(email) and password
 $sql = "SELECT * FROM user WHERE user_email = '$log_username' AND password = '$log_password' ";
 $result = $conn->query($sql);
-        if ($result->num_rows == 1) {
-            echo "Login successful!";
-            // Redirect to the home page or some other page
-        } else {
-            echo "Invalid username or password.";
-        }
+// Storing result in row
+$row = mysqli_fetch_assoc($result);
+if ($result->num_rows == 1) 
+{
+  echo "Login successful!";
+  // if username and password are correct, store user id and username in session
+  $_SESSION['user_id'] = $row['user_id'];
+  $_SESSION['username'] = $row['username'];
+  echo $row['username'];
+  echo $row['user_id'];
+  // Redirect to the home page or some other page
+} 
+else 
+{
+  echo "Invalid username or password.";
+}
 
 
 
