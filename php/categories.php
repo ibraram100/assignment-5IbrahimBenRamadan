@@ -41,16 +41,16 @@ else
     <!-- Header links -->
     <header>
         <div class="logo">
-            <a href="home.html"><img src="../images/shroom wojak.png" alt="Logo" class="logo_img">Expense Tracker</a>
+            <a href="home.php"><img src="../images/shroom wojak.png" alt="Logo" class="logo_img">Expense Tracker</a>
         </div>
           <nav>
             <ul>
-              <li><a href="../html/home.html">Home</a></li>
+              <li><a href="../html/home.php">Home</a></li>
               <li><a href="#">Categories</a></li>
               <li><a href="../html/login.html">Login</a></li>
               <li><a href="../php/logout.php">Log Out</a></li>
               <!-- Added user profile to the navbar -->
-              <li><a href="../html/home.html"><?php echo $_SESSION['username'] ?>'s Profile</a></li>
+              <li><a href="../html/home.php"><?php echo $_SESSION['username'] ?>'s Profile</a></li>
             </ul>
           </nav>
         </header>
