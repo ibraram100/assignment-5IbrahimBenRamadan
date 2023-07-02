@@ -3,6 +3,11 @@
 
 
 <!DOCTYPE html>
+<?php 
+// Starting Session
+session_start();
+
+?>
 <html>
     <head>
         <!-- Fonts  -->
@@ -33,6 +38,8 @@
                   <li><a href="SignUp.html">Sign Up</a></li>
                   <li><a href="login.html">Login</a></li>
                   <li><a href="#">Log Out</a></li>
+                  <li><a href="#">
+                    <?php echo $_SESSION['username'];?> Profile</a></li>
                 </ul>
               </nav>
             </header>

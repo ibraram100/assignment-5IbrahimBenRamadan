@@ -32,7 +32,7 @@ foreach($_GET as $key=>$value){
     <body>
         <header>
             <div class="logo">
-            <a href="../html/home.html"><img src="../images/shroom wojak.png" alt="Logo" class="logo_img">Expense Tracker</a>
+            <a href="../html/home.php"><img src="../images/shroom wojak.png" alt="Logo" class="logo_img">Expense Tracker</a>
               </div>
               <nav>
                 <ul>
@@ -65,7 +65,7 @@ foreach($_GET as $key=>$value){
                 
                 </tr>
             </table>
-            <button><a href="../html/home.html">Go Home</a></button>
+            <button><a href="../html/home.php">Go Home</a></button>
 
             <footer>
             
@@ -79,7 +79,7 @@ foreach($_GET as $key=>$value){
                     <td class="footer_td" colspan="3">
                         <ul>
                             <li class="footer_li">
-                                <a href="home.html">Home</a>
+                                <a href="home.php">Home</a>
                             </li>
                             <li class="footer_li">
                                 <a href="#">About </a>
