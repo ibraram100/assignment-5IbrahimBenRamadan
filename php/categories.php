@@ -1,8 +1,9 @@
 <!-- ابراهيم محمد فاتح بن رمضان -->
 <!-- 2023/06/30 -->
-<!-- Allowing logged in users to add new categories -->
+<!-- Allowing logged in users to view, edit categories and (maybe even search categories one day) -->
 
 <?php
+require_once "functions.php";
 session_start();
 // If user is not logged in, user will be redirected to login page
 if (!isset($_SESSION['user_id']))
@@ -15,6 +16,9 @@ else
 {
   echo $_SESSION['username'];
 }
+
+// Connecting to db
+$conn = db_connection();
 
 
 ?>
