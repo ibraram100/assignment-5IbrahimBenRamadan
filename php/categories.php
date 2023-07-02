@@ -7,7 +7,9 @@ session_start();
 // If user is not logged in, user will be redirected to login page
 if (!isset($_SESSION['user_id']))
 {
-  echo "error ";
+  // **add a message to the login page stating that the user must login in order to use this feature**
+  header("Location: ../html/login.html");
+  exit();
 }
 else
 {
@@ -46,7 +48,9 @@ else
               <li><a href="../html/home.html">Home</a></li>
               <li><a href="#">Categories</a></li>
               <li><a href="../html/login.html">Login</a></li>
-              <li><a href="#">Log Out</a></li>
+              <li><a href="../php/logout.php">Log Out</a></li>
+              <!-- Added user profile to the navbar -->
+              <li><a href="../html/home.html"><?php echo $_SESSION['username'] ?>'s Profile</a></li>
             </ul>
           </nav>
         </header>
