@@ -1,6 +1,6 @@
 <!-- ابراهيم محمد فاتح بن رمضان -->
 <!-- 2023/06/30 -->
-<!-- Allowing logged in users to view, edit categories and (maybe even search categories one day) -->
+<!-- Allowing logged in users to view, edit categories (and maybe even search categories one day) -->
 
 <?php
 require_once "functions.php";
@@ -12,13 +12,23 @@ if (!isset($_SESSION['user_id']))
   header("Location: ../html/login.html");
   exit();
 }
-else
-{
-  echo $_SESSION['username'];
-}
+
 
 // Connecting to db
 $conn = db_connection();
+// Query
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT * FROM category WHERE user_user_id = $user_id ;";
+// Executing query
+$result = $conn->query($sql);
+if (!$result)
+{
+  echo "Error in executing query";
+  echo $sql;
+  die($conn->error);
+}
+
+
 
 
 ?>
@@ -43,6 +53,7 @@ $conn = db_connection();
         <link rel="icon" href="../images/shroom wojak.png" type="image/x-icon">
     </head>
     <!-- Header links -->
+    <body>
     <header>
         <div class="logo">
             <a href="home.php"><img src="../images/shroom wojak.png" alt="Logo" class="logo_img">Expense Tracker</a>
@@ -58,4 +69,58 @@ $conn = db_connection();
             </ul>
           </nav>
         </header>
+        <main>
+        
+
+        </main>
+    </body>
 </html>
+
+
+<?php 
+if (!empty($result))
+{
+  ?>
+  <table>
+    <th class="footer_th" colspan="3"><h1 class="footer_h1">Category name</h1></th>
+    <th class="footer_th" colspan="3"><h1 class="footer_h1">Category budget</h1></th>
+    <th class="footer_th" colspan="3"><h1 class="footer_h1">Category date</h1></th>
+    <th class="footer_th" colspan="3"><h1 class="footer_h1">Edit</h1></th>
+    <th class="footer_th" colspan="3"><h1 class="footer_h1">Delete</h1></th>
+
+
+    <br>
+    <?php
+  while($data = $result->fetch_array(MYSQLI_ASSOC))
+  {
+    ?>
+    <tr>
+    <td class="footer_td" colspan="3">
+      <h1><?php echo $data['category_name'] ?></h1>
+    </td>
+    <td class="footer_td" colspan="3">
+      <h1><?php echo $data['budget'] ?></h1>
+    </td>
+    <td class="footer_td" colspan="3">
+      <h1><?php echo $data['creation_date'] ?></h1>
+    </td>
+    <td class="footer_td" colspan="3">
+      <form action="../php/edit_category_fe.php" method="post">
+        <input type="hidden" name="category_id" value="<?php echo $data['category_id']; ?>">
+        <input class="edit_button" type="submit" value="Edit">
+      </form>
+    </td>
+    <td class="footer_td" colspan="3">
+      <form action="../php/delete_category.php" method="post">
+        <input type="hidden" name="category_id" value="<?php echo $data['category_id']; ?>">
+        <input class="edit_button" type="submit" value="Delete">
+      </form>
+    </td>
+    </tr>
+    <?php
+
+}
+echo "</table>";
+
+}
+?>

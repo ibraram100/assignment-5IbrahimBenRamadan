@@ -11,7 +11,6 @@ try
 {
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
-
   // Check connection
   if ($conn->connect_error) {
     throw new Exception("Failed to connect to server ");

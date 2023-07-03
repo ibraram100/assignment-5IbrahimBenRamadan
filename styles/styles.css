@@ -133,3 +133,10 @@ input {
   font-size: 20px;
 }
 
+/* Edit category button */
+input.edit_button {
+    
+  padding-right: 30px;
+
+}
+
