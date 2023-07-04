@@ -118,7 +118,6 @@ if (!empty($result))
     </td>
     </tr>
     <?php
-
 }
 echo "</table>";
 

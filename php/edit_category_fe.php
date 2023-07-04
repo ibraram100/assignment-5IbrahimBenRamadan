@@ -113,6 +113,8 @@ if ($result->num_rows != 1)
                         <br>
                         <input type="number" name="budget_limit" value="<?php echo $data['budget_limit'] ?>">
                         <br>
+                        <input type="hidden" name="category_id" value="<?php echo $data['category_id'] ?>">
+
                         <input type="submit">
                     </div>
                 </form>
