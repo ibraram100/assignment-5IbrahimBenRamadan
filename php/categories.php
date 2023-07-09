@@ -62,10 +62,11 @@ if (!$result)
             <ul>
               <li><a href="../html/home.php">Home</a></li>
               <li><a href="#">Categories</a></li>
+              <li><a href="../php/add_categories_fe.php">Add Category</a></li>
               <li><a href="../html/login.html">Login</a></li>
               <li><a href="../php/logout.php">Log Out</a></li>
               <!-- Added user profile to the navbar -->
-              <li><a href="../html/home.php"><?php echo $_SESSION['username'] ?>'s Profile</a></li>
+              <li><a href="../php/edit_profile.php"><?php echo $_SESSION['username'] ?>'s Profile</a></li>
             </ul>
           </nav>
         </header>
@@ -114,6 +115,7 @@ if (!empty($result))
       <form action="../php/delete_category.php" method="post">
         <input type="hidden" name="category_id" value="<?php echo $data['category_id']; ?>">
         <input class="edit_button" type="submit" value="Delete">
+        <!-- Send session instead of post ids -->
       </form>
     </td>
     </tr>

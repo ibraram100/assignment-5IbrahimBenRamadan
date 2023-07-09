@@ -39,6 +39,7 @@ start_check_session();
             <ul>
               <li><a href="../html/home.php">Home</a></li>
               <li><a href="#">Categories</a></li>
+              <li><a href="../php/add_categories_fe.php">Add Category</a></li>
               <li><a href="../html/login.html">Login</a></li>
               <li><a href="../php/logout.php">Log Out</a></li>
               <!-- Added user profile to the navbar -->

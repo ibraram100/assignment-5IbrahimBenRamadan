@@ -1,11 +1,9 @@
-<!-- 2023/07/03 -->
-<!-- ابراهيم محمد فاتح بن رمضان  -->
-<!-- This file provides an edit form which then sends the data to edit_category_query.php  -->
-<!-- edit_category_query.php will then send an update query to the database -->
-
+<!-- ابراهيم محمد فاتح بن رمضان -->
+<!-- 2023/07/09 -->
+<!-- Allowing logged in users edit their profile data -->
+<!-- new data is then sent to edit_profile_query.php -->
 <?php 
 require_once "functions.php";
-// Starting session
 session_start();
 // If user is not logged in, user will be redirected to login page
 if (!isset($_SESSION['user_id']))
@@ -14,30 +12,12 @@ if (!isset($_SESSION['user_id']))
   header("Location: ../html/login.html");
   exit();
 }
-// Extracting data from categories.php
-extract($_POST, EXTR_PREFIX_ALL, 'var');
-
-// checking if Category id is set and not empty
-foreach($_POST as $key=>$value){
-    if(!isset($value)){
-      echo "<h1 style='color:red;'>Please use the form normally, like normal people ya know</h1>";
-      echo "<button><a href='../php/categories.php'>Go back</a></button>";
-      exit(0);
-    }
-  }
-
-  foreach($_POST as $key=>$value){
-    if(empty($value)){
-      echo "<h1 style='color:red;'>Please fill the fields</h1>";
-      echo "<button><a href='../php/categories.php'>Go back</a></button>";
-      exit(0);
-    }
-  }
-
 // Connecting to db
 $conn = db_connection();
-// Making query
-$sql = "SELECT * FROM category WHERE category_id = $var_category_id;";
+// Query
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT * FROM user WHERE user_id = $user_id ;";
+// Executing query
 $result = $conn->query($sql);
 if (!$result)
 {
@@ -45,17 +25,16 @@ if (!$result)
   echo $sql;
   die($conn->error);
 }
-$data = $result->fetch_array(MYSQLI_ASSOC);
-
 // If query is returned with more than 1 row that means something have gone terribly wrong
-$row = mysqli_fetch_assoc($result);
+$data = mysqli_fetch_assoc($result);
 if ($result->num_rows != 1) 
 {
   die("Somethnig went wrong");
 } 
 
-
 ?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -83,9 +62,10 @@ if ($result->num_rows != 1)
               <nav>
                 <ul>
                   <li><a href="../php/categories.php">Categories</a></li>
+                  <li><a href="../php/add_categories_fe.php">Add Category</a></li>
                   <li><a href="SignUp.html">Sign Up</a></li>
                   <li><a href="login.html">Login</a></li>
-                  <li><a href="#">Log Out</a></li>
+                  <li><a href="../php/logout.php">Log Out</a></li>
                   <li><a href="#">
                     <?php echo $_SESSION['username'];?> Profile</a></li>
                 </ul>
@@ -93,27 +73,35 @@ if ($result->num_rows != 1)
             </header>
             <main>
             <div>
-                <form class="sign_up_form" action="../php/edit_category_query.php"  method="post">
-                    <h1 class="h1_form">Edit Category</h1>
+                <form class="sign_up_form" action="../php/edit_profile_query.php"  method="post">
+                    <h1 class="h1_form">Edit Profile</h1>
                     <p class="p_form">Please edit the following fields </p>
                     <div class="input">
-                        <label for="username" class="sign_up_label"> Category Name </label>
+                        <label for="email" class="sign_up_label"> Email </label>
                         <br>
-                        <input type="text" name="category_name" value="<?php echo $data['category_name'] ?>">
+                        <input type="email" name="email" value="<?php echo $data['user_email'] ?>">
                         <br>
-                        <label for="text" class="sign_up_label"> Budget </label>
+                        <label for="text" class="sign_up_label"> Username </label>
                         <br>
-                        <input type="number" name="budget" value="<?php echo $data['budget'] ?>">
+                        <input type="text" name="username" value="<?php echo $data['username'] ?>">
                         <br>
-                        <label for="text" class="sign_up_label"> Reminder </label>
+                        <label for="text" class="sign_up_label"> Password </label>
                         <br>
-                        <input type="date" name="reminder" value="<?php echo $data['reminder'] ?>">
+                        <input type="password" name="password" value="<?php echo $data['password'] ?>">
                         <br>
-                        <label for="text" class="sign_up_label"> Budget Limit </label>
+                        <label for="text" class="sign_up_label">Confirm Password </label>
                         <br>
-                        <input type="number" name="budget_limit" value="<?php echo $data['budget_limit'] ?>">
+                        <input type="password" name="confirm_password" value="<?php echo $data['password'] ?>">
                         <br>
-                        <input type="hidden" name="category_id" value="<?php echo $data['category_id'] ?>">
+                        <label for="text" class="sign_up_label"> First Name </label>
+                        <br>
+                        <input type="text" name="first_name" value="<?php echo $data['first_name'] ?>">
+                        <br>
+
+                        <label for="text" class="sign_up_label"> Last Name </label>
+                        <br>
+                        <input type="text" name="last_name" value="<?php echo $data['last_name'] ?>">
+                        <br>
 
                         <input type="submit">
                     </div>
@@ -122,4 +110,6 @@ if ($result->num_rows != 1)
             </main>
     </body>
 </html>
+
+
 
