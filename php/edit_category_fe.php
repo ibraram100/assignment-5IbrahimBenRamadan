@@ -85,8 +85,8 @@ if ($result->num_rows != 1)
                   <li><a href="../php/categories.php">Categories</a></li>
                   <li><a href="SignUp.html">Sign Up</a></li>
                   <li><a href="login.html">Login</a></li>
-                  <li><a href="#">Log Out</a></li>
-                  <li><a href="#">
+                  <li><a href="../php/logout.php">Log Out</a></li>
+                  <li><a href="../php/edit_profile.php">
                     <?php echo $_SESSION['username'];?> Profile</a></li>
                 </ul>
               </nav>
