@@ -1,6 +1,6 @@
 <!-- ابراهيم محمد فاتح بن رمضان -->
-<!-- 2023/07/18 -->
-<!-- This file displays the php form to add a new expense -->
+<!-- 2023/07/23 -->
+<!-- This file displays the php form to add a new payment method -->
 
 <?php 
 error_reporting(E_ALL);
@@ -14,10 +14,6 @@ $conn = db_connection();
 start_check_session();
 // Sql query to bring all categories
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM category WHERE user_user_id = '$user_id';";
-$payment_sql = "SELECT * FROM payment_type WHERE user_user_id = '$user_id';";
-$result = $conn->query($sql);
-$payment_result = $conn->query($payment_sql);
 
 
 ?>
@@ -61,44 +57,14 @@ $payment_result = $conn->query($payment_sql);
         <!-- Main content -->
         <main>
             <div>
-                <form class="sign_up_form" action="../php/add_expense.php" method="post">
-                    <h1 class="h1_form">Add Expense</h1>
-                    <p class="p_form">Please fill the following required fields to add new expense </p>
+                <form class="sign_up_form" action="../php/add_payment_query.php" method="post">
+                    <h1 class="h1_form">Add Payment method</h1>
+                    <p class="p_form">Please enter payment method name </p>
                     <div class="input">
-                        <label for="email" class="sign_up_label"> Expense Name* </label>
+                        <label for="email" class="sign_up_label"> Payment Method* </label>
                         <br>
-                        <input type="name" name="expense_name" placeholder="Expense Name">
+                        <input type="name" name="payment_type" placeholder="Payment method ex: gold, silver, cash, human organs(Good condition only), human labor ">
                         <br>
-                        <label for="username" class="sign_up_label"> Amount* </label>
-                        <br>
-                        <input type="number" name="amount">
-                        <br>
-                        <label for="first_name" class="sign_up_label"> Comment </label>
-                        <br>
-                        <input type="text" name="comment" placeholder="I bought this thing because of ....">
-                        <br>
-                        <label for="last_name" class="sign_up_label"> Date </label>
-                        <br>
-                        <input type="date" name="date">
-                        <br>
-                        <!-- Added new drop down menu that's supposed to show user's categories-->
-                        <label for="last_name" class="sign_up_label"> Category </label>
-                        <select name="category_dropdown">
-                            <?php while($row = $result->fetch_assoc()): ?>
-                                <option value="<?php echo $row['category_id']; ?>"><?php echo $row['category_name']; ?></option>
-                            <?php endwhile; ?>
-                        </select>
-
-                        <!-- Added new drop down menue that's supposed to show user's payment options-->
-                        <label for="last_name" class="sign_up_label"> Payment Method <a href="../php/add_payment_fe.php">add new</a></label>
-                        <select name="category_payment">
-                            <?php while($row = $payment_result->fetch_assoc()): ?>
-                                <option value="<?php echo $row['payment_id']; ?>"><?php echo $row['payment_type']; ?></option>
-                            <?php endwhile; ?>
-                        </select>
-
-                        <br>
-                        </select>
                         <input type="submit">
                     </div>             
                 </form>
