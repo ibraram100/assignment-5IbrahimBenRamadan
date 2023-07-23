@@ -14,6 +14,7 @@ $conn = db_connection();
 start_check_session();
 // Sql query to bring all categories
 $user_id = $_SESSION['user_id'];
+
 $sql = "SELECT * FROM category WHERE user_user_id = '$user_id';";
 $payment_sql = "SELECT * FROM payment_type WHERE user_user_id = '$user_id';";
 $result = $conn->query($sql);

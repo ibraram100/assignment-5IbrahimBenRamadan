@@ -120,7 +120,7 @@ $payment_result = $conn->query($payment_sql);
                         <input type="text" name="expense_comment" value="<?php echo $data['expense_comment'] ?>">
                         <br>
                         <input type="hidden" name="expense_id" value="<?php echo $data['expense_id']; ?>">
-                        <input type="hidden" name="category_id" value="<?php echo $category_id; ?>">
+                        <input type="hidden" name="category_id" value="<?php echo $var_category_id; ?>">
                         <input type="hidden" name="category_budget" value="<?php echo $var_category_budget; ?>">
                         <br>
 

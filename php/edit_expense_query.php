@@ -11,7 +11,8 @@ extract($_POST, EXTR_PREFIX_ALL, 'var');
 
 
 // Update expense sql
-$expense_sql = "UPDATE expense SET amount=$var_amount,expense_name = '$var_expense_name',expense_comment = '$var_expense_comment', date = '$var_date';";
+$expense_sql = "UPDATE expense SET amount=$var_amount,expense_name = '$var_expense_name',expense_comment = '$var_expense_comment', date = '$var_date' 
+WHERE expense_id = '$var_expense_id';";
 // Checking if the new expense amount is higher than category budget or if expense amount is negative value
 if ($var_amount > $var_category_budget or $var_amount <0)
 {
@@ -25,19 +26,20 @@ if ($var_amount > $var_category_budget or $var_amount <0)
 // then $new_budget = 500-(-100) =>600
 $new_budget = $var_amount - $var_category_budget;
 $new_budget = $var_category_budget - $new_budget;
-$category_sql = "UPDATE category SET budget = ";
+echo $var_category_id;
+$category_sql = "UPDATE category SET budget = $new_budget WHERE category_id = '$var_category_id';";
 // using transaction to update expense amount and category budget
 $conn->begin_transaction();
 try 
 {
     $conn->query($expense_sql);
+    $conn->query($category_sql);
     $conn->commit();
-
+    header('location: expenses.php');
 }
 catch (Exception $e)
 {
-    echo "error updating expense";
-    exit();
+   $conn->rollback();
 }
 
 ?>

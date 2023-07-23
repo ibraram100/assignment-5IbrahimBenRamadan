@@ -112,7 +112,13 @@ if (!empty($result))
     </td>
     <td class="footer_td" colspan="3">
       <form action="../php/delete_expense.php" method="post">
-        <input type="hidden" name="category_id" value="<?php echo $data['expense_id']; ?>">
+        <input type="hidden" name="expense_id" value="<?php echo $data['expense_id']; ?>">
+        <input type="hidden" name="expense_amount" value="<?php echo $data['amount']; ?>">
+        <input type="hidden" name="category_budget" value="<?php echo $category_name['budget']; ?>">
+        <input type="hidden" name="category_id" value="<?php echo $category_name['category_id']; ?>">
+
+
+
         <input class="edit_button" type="submit" value="Delete">
         <!-- Send session instead of post ids -->
       </form>
