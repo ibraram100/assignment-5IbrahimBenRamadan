@@ -3,11 +3,21 @@
 <!-- This file displays the php form to add a new expense -->
 
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
+
 require_once "functions.php";
 // Connecting to db
-db_connection();
+$conn = db_connection();
 // Starting session 
 start_check_session();
+// Sql query to bring all categories
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT * FROM category WHERE user_user_id = '$user_id';";
+$result = $conn->query($sql);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +78,14 @@ start_check_session();
                         <br>
                         <input type="date" name="date">
                         <br>
+                        <!-- Added new drop down menu that's supposed to show all user's categories-->
+                        <select name="category_dropdown">
+                            <?php while($row = $result->fetch_assoc()): ?>
+                                <option value="<?php echo $row['category_id']; ?>"><?php echo $row['category_name']; ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                        <br>
+                        </select>
                         <input type="submit">
                     </div>             
                 </form>
