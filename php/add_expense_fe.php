@@ -55,6 +55,7 @@ $payment_result = $conn->query($payment_sql);
               <li><a href="#">Categories</a></li>
               <li><a href="login.html">Login</a></li>
               <li><a href="#">Log Out</a></li>
+              <li><a href="../php/expenses.php">Expenses</a></li>
               <li><a href="../php/edit_profile.php"><?php echo $_SESSION['username'] ?>'s Profile</a></li>
             </ul>
           </nav>

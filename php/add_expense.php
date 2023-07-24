@@ -31,7 +31,6 @@ VALUES ('$expense_id',$var_category_dropdown,$user_id,'$var_expense_name','$var_
 $category_update = "UPDATE category SET budget = budget- $var_amount WHERE category_id = '$var_category_dropdown';";
 // Sql query to get category in order to check if the expense amount is less than category budget
 $category_sql = "SELECT * FROM category WHERE category_id = '$var_category_dropdown';";
-echo "<h1>$var_category_dropdown</h1>";
 $category_data = $conn->query($category_sql);
 // Check if the query was executed
 if (!$category_data)
@@ -43,7 +42,6 @@ if (!$category_data)
 
 $category_data = $category_data->fetch_array(MYSQLI_ASSOC);
 // Checking if expense amount is higher than category budget or if expense amount is negative value
-echo $category_data['budget'];
 if ($var_amount > $category_data['budget'] or $var_amount <0)
 {
   echo "<h1>Expense amount is either higher than category budget or less than 0 </h1>";
@@ -59,7 +57,6 @@ try
   $conn->query($sql);
   $conn->query($category_update);
   $conn->commit();
-  header('location: expenses.php');
   
 
 
@@ -67,22 +64,11 @@ try
 catch(Exception $e)
 {
   $conn->rollback();
+  echo "couldn't add expense";
+  exit(0);
 }
 
+  header('location: expenses.php');
 
-
-
-
-
-
-
-if (!$result)
-{
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
-else 
-{
-  echo "hurray !!";
-}
 
 ?>
