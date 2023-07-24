@@ -1,29 +1,64 @@
 <!-- ابراهيم محمد فاتح بن رمضان -->
-<!-- This file displays user's category and a search bar for categories -->
-<!-- This file also provides search by date feature -->
-
+<!-- 2023/07/24 -->
+<!-- This file returns expense search result  -->
 <?php 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-
 
 require_once "functions.php";
 // Connecting to db
 $conn = db_connection();
 // Starting session 
 start_check_session();
-// Sql query to bring user's expenses
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM expense WHERE user_user_id = '$user_id';";
-// Category sql
-$category_sql = "SELECT * FROM category WHERE user_user_id = '$user_id';";
+
+extract($_POST, EXTR_PREFIX_ALL, 'var');
+// checking if inputs are set by using isset()
+foreach($_POST as $key=>$value){
+  if(!isset($key)){
+    echo "<h1 style='color:red;'>Please use the form normally, like normal people ya know</h1>";
+    exit(0);
+  }
+}
+// Checking for empty variables
+$counter = 0;
+foreach($_POST as $key=>$value){
+  if(empty($value) and $key != 'last_name'){
+    echo "<h1 style='color:red;'>$key is required !</h1>";
+    $counter++;
+  }
+}
+if ($counter>0)
+{
+    echo "<h1 style='color:red;'>Please fill requierd fields</h1>";
+    echo "<button><a href='../php/expenses.php'>Go back</a></button>";
+    exit(0);
+}
+
+
+
+// Making sure that date or expense name are not empty
+// if (empty($var_search_name) and (empty($var_to_date) or empty($var_to_date)))
+// {
+//     echo "Please search by name, or date or both.";
+//     echo "<button><a href='../php/expenses.php'>Go back</a></button>";
+//     exit();
+// }
+// else if ((empty($var_to_date) and !empty($var_from_date)) or (empty($var_from_date) and !empty($var_to_date)))
+// {
+//     echo "Please use both date fields.";
+//     echo "<button><a href='../php/expenses.php'>Go back</a></button>";
+//     exit();
+// }
+
+
+// Sql query to return all expenses between a specific period 
+$sql = "SELECT * FROM expense WHERE user_user_id = '$user_id' AND date > '$var_from_date' AND date < '$var_to_date' AND category_category_id = '$var_category_dropdown';";
 $payment_sql = "SELECT * FROM payment_type WHERE user_id = '$user_id';";
 $category_name_sql = "SELECT * FROM category WHERE user_user_id = '$user_id';";
 $category_name = $conn->query($category_name_sql);
 
 $result = $conn->query($sql);
-$category_result = $conn->query($category_sql);
-
 $payment_result = $conn->query($sql);
 
 
@@ -67,30 +102,7 @@ $payment_result = $conn->query($sql);
           </nav>
         </header>
         <main>
-            <!-- Searchin for an expense either by name or a specific period -->
-        <form class="sign_up_form" action="../php/search_result.php" method="post">
-                    <div class="input">
-                        <label for="password" class="sign_up_label"> Search by date </label>
-                        <br>
-                        <label for="password" class="sign_up_label"> From </label>
-                        <input type="date" name="from_date">
-                        <br>
-                        <label for="password" class="sign_up_label"> To </label>
-                        <input type="date" name="to_date">
-                        <br>
-                        <!-- Added new drop down menu that's supposed to show user's categories-->
-                        <label for="last_name" class="sign_up_label"> Category </label>
-                        <select name="category_dropdown">
-                            <?php while($row = $category_result->fetch_assoc()): ?>
-                                <option value="<?php echo $row['category_id']; ?>"><?php echo $row['category_name']; ?></option>
-                            <?php endwhile; ?>
-                        </select>
-
-                        <input type="submit" value="Search">
-                    </div>
-                </form>
         
-
         </main>
     </body>
 </html>
