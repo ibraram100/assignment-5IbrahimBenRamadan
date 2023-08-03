@@ -32,7 +32,7 @@ $current_date = date('Y-m-d');
 
 
 
-// Prepare the statement for getting the source category budget
+// Prepared statement for getting the source category budget
 $get_budget_from = $conn->prepare("SELECT * FROM category WHERE category_id = ?");
 $get_budget_from->bind_param("i", $var_category_from);
 $get_budget_from->execute();
@@ -40,7 +40,7 @@ $get_from = $get_budget_from->get_result();
 $get_from = $get_from->fetch_assoc();
 $get_from = $get_from['budget'];
 
-// Prepared the statement for getting the destenation category budget
+// Prepared statement for getting the destenation category budget
 $get_budget_to = $conn->prepare("SELECT * FROM category WHERE category_id = ?");
 $get_budget_to->bind_param("i", $var_category_to);
 $get_budget_to->execute();
