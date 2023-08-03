@@ -24,7 +24,6 @@ foreach($_POST as $key=>$value){
 }
 
 // using user_id as a primary key, since every user have only one review 
-// checking if a user have already reviewed the website
 $stmt = $conn->prepare("SELECT user_user_id FROM review WHERE user_user_id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
