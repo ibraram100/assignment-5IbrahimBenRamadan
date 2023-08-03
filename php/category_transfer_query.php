@@ -61,12 +61,12 @@ $sql_transfer->bind_param("isdsiii", $transfer_id, $current_date, $var_transfer_
 
 // Prepared statement for updating source category query
 $sql_from = $conn->prepare("UPDATE category SET budget = ? WHERE category_id = ?");
-$sql_from->bind_param("di", $new_from, $var_category_from);
+$sql_from->bind_param("ii", $new_from, $var_category_from);
 
 
 // Prepared statement for updating source category query
 $sql_to = $conn->prepare("UPDATE category SET budget = ? WHERE category_id = ?");
-$sql_to->bind_param("di", $new_to, $var_category_to);
+$sql_to->bind_param("ii", $new_to, $var_category_to);
 
 
 // If the transfered amount is greater than the source category's budget 
@@ -84,10 +84,12 @@ else
         $sql_from->execute();
         $sql_to->execute();
         $conn->commit();
+        header('location: transfers.php');
     }
     catch (Exception $e)
     {
         $conn->rollback();
+        echo $e;
     }
 }
 
